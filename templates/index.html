@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary Prediction App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Salary Prediction Web App</h1>
+        <p>Enter your job details to predict your salary and get resume tips!</p>
+    </header>
+
+    <div class="container">
+        <form method="POST" action="/">
+            <label for="job_title">Job Title:</label>
+            <input type="text" id="job_title" name="job_title" required>
+
+            <label for="education_level">Education Level:</label>
+            <select id="education_level" name="education_level" required>
+                <option value="">-- Select Education --</option>
+                <option value="High School">High School</option>
+                <option value="Bachelor">Bachelor's</option>
+                <option value="Master">Master's</option>
+                <option value="PhD">PhD</option>
+            </select>
+
+            <label for="years_experience">Years of Experience:</label>
+            <input type="number" id="years_experience" name="years_experience" min="0" required>
+
+            <label for="location">Location (Optional):</label>
+            <input type="text" id="location" name="location">
+
+            <button type="submit">Predict Salary</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result-box">
+            <h2>Predicted Salary:</h2>
+            <p><strong>{{ prediction }}</strong></p>
+        </div>
+        {% endif %}
+
+        {% if tips %}
+        <div class="resume-tips">
+            <h3>Resume Tips for {{ job_title }}</h3>
+            <ul>
+                {% for tip in tips %}
+                <li>{{ tip }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Salary Predictor | Made by Bhavini</p>
+    </footer>
+</body>
+</html>

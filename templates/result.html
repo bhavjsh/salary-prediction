@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Prediction Results</h1>
+        <p>Here’s your salary prediction and career enhancement tips.</p>
+    </header>
+
+    <div class="container">
+        <div class="result-box">
+            <h2>Predicted Salary:</h2>
+            <p><strong>{{ prediction }}</strong></p>
+        </div>
+
+        {% if tips %}
+        <div class="resume-tips">
+            <h3>Resume Tips for {{ job_title }}</h3>
+            <ul>
+                {% for tip in tips %}
+                <li>{{ tip }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="btn-group">
+            <a href="/" class="btn">Predict Again</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Salary Predictor | Designed by Bhavini</p>
+    </footer>
+</body>
+</html>

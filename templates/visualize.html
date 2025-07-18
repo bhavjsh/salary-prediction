@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary Visualization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Salary Visualization</h1>
+
+        <canvas id="salaryChart" width="400" height="300"></canvas>
+
+        <div class="center">
+            <a href="/" class="button">← Predict Another</a>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('salaryChart').getContext('2d');
+        const salaryChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Predicted Salary', 'Average Salary'],
+                datasets: [{
+                    label: 'Salary in USD',
+                    data: [{{ predicted_salary }}, {{ average_salary }}],
+                    backgroundColor: ['#4CAF50', '#2196F3']
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Salary ($)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
