@@ -1,25 +1,52 @@
-from flask import Flask, render_template, request, redirect, url_for
-import joblib
+import streamlit as st
 import pandas as pd
 import numpy as np
+import joblib
+import matplotlib.pyplot as plt
 
+# ⚙️ Configuration (must be FIRST Streamlit call)
+st.set_page_config(page_title="Salary Prediction App", layout="centered")
 
-df = pd.read_csv('knn_adult.csv')
+# ✅ Load Dataset
+try:
+    df = pd.read_csv("adult.csv")
+    st.success("✅ Dataset loaded successfully!")
+except Exception as e:
+    st.error(f"❌ Error reading CSV: {e}")
+    df = pd.DataFrame()
 
+# ✅ Load Model
+try:
+    model = joblib.load("model/salary_model.pkl")
+    model_features = joblib.load("model/model_features.pkl")
+except Exception as e:
+    st.error(f"❌ Error loading model or features: {e}")
+    model = None
+    model_features = []
 
-app = Flask(__name__)
+# 🎯 App Title
+st.markdown("<h1 style='text-align: center; color: #4CAF50;'>💼 Salary Prediction App</h1>", unsafe_allow_html=True)
+st.markdown("---")
 
-# Load model and features
-model = joblib.load('salary_model.pkl')
-model_features = joblib.load('model_features.pkl')
+# 📋 Input Form
+st.markdown("### 📋 Enter Your Details:")
+with st.form("prediction_form"):
+    age = st.number_input("Age", min_value=17, max_value=100, value=30)
+    education = st.selectbox("Education", sorted(df["education"].dropna().unique()))
+    workclass = st.selectbox("Workclass", sorted(df["workclass"].dropna().unique()))
+    marital_status = st.selectbox("Marital Status", sorted(df["marital_status"].dropna().unique()))
+    occupation = st.selectbox("Occupation", sorted(df["occupation"].dropna().unique()))
+    relationship = st.selectbox("Relationship", sorted(df["relationship"].dropna().unique()))
+    race = st.selectbox("Race", sorted(df["race"].dropna().unique()))
+    sex = st.selectbox("Sex", sorted(df["sex"].dropna().unique()))
+    capital_gain = st.number_input("Capital Gain", value=0.0)
+    capital_loss = st.number_input("Capital Loss", value=0.0)
+    hours_per_week = st.slider("Hours Per Week", 1, 100, 40)
 
-# Mock job suggestion list
-job_suggestions = [
-    "Data Analyst", "Software Developer", "Project Manager", "HR Specialist",
-    "Marketing Manager", "Financial Advisor", "Business Analyst"
-]
+    submitted = st.form_submit_button("🔍 Predict Salary")
 
-# Resume tips
+# 💡 Suggestions
+job_suggestions = ["Data Analyst", "Software Developer", "Project Manager", "HR Specialist", "Marketing Manager"]
 resume_tips = [
     "Tailor your resume to each job.",
     "Use clear section headings.",
@@ -28,61 +55,62 @@ resume_tips = [
     "Proofread to avoid grammatical errors."
 ]
 
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-@app.route('/predict', methods=['POST'])
-def predict():
+# 🔍 Prediction Logic
+if submitted:
     try:
-        age = int(request.form['age'])
-        education_num = int(request.form['education_num'])
-        capital_gain = float(request.form['capital_gain'])
-        capital_loss = float(request.form['capital_loss'])
-        hours_per_week = int(request.form['hours_per_week'])
-
-        categorical_fields = ['workclass', 'education', 'marital_status', 'occupation',
-                              'relationship', 'race', 'gender', 'native_country']
-        input_data = {
-            'age': [age],
-            'educational-num': [education_num],
-            'capital-gain': [capital_gain],
-            'capital-loss': [capital_loss],
-            'hours-per-week': [hours_per_week]
+        # Raw input dictionary
+        user_input = {
+            "age": age,
+            "education": education,
+            "workclass": workclass,
+            "marital_status": marital_status,
+            "occupation": occupation,
+            "relationship": relationship,
+            "race": race,
+            "sex": sex,
+            "capital_gain": capital_gain,
+            "capital_loss": capital_loss,
+            "hours_per_week": hours_per_week
         }
 
-        # Add one-hot encoded categorical features
-        for field in categorical_fields:
-            value = request.form[field]
-            key = f"{field.replace('_', '-')}_{value}"
-            input_data[key] = [1]
+        input_df = pd.DataFrame([user_input])
 
-        # Fill missing features with 0
-        df_input = pd.DataFrame(columns=model_features)
-        df_input.loc[0] = 0  # initialize with zeros
+        # One-hot encode using all possible features from training
+        input_encoded = pd.get_dummies(input_df)
 
-        for feature in input_data:
-            if feature in df_input.columns:
-                df_input.at[0, feature] = input_data[feature][0]
+        # Align with training model features
+        final_input = pd.DataFrame(columns=model_features)
+        final_input = final_input.fillna(0)
+        for col in input_encoded.columns:
+            if col in final_input.columns:
+                final_input.at[0, col] = input_encoded[col].values[0]
 
-        prediction = model.predict(df_input)[0]
+        # Predict
+        prediction = model.predict(final_input)[0]
         result = "> $50K" if prediction == 1 else "<= $50K"
 
-        return render_template("result.html",
-                               result=result,
-                               suggestions=job_suggestions[:5],
-                               resume_tips=resume_tips[:5])
+        st.success(f"💰 Predicted Salary Class: **{result}**")
+
+        # 📈 Salary Chart
+        st.markdown("### 📊 Salary Comparison")
+        predicted_salary = 65000 if prediction == 1 else 35000
+        average_salary = 52000
+        fig, ax = plt.subplots()
+        ax.bar(["Predicted", "Average"], [predicted_salary, average_salary], color=["green", "blue"])
+        ax.set_ylabel("Annual Salary (USD)")
+        st.pyplot(fig)
+
+        # 💼 Job Suggestions
+        st.markdown("### 💼 Job Suggestions")
+        st.write(", ".join(job_suggestions))
+
+        # 📝 Resume Tips
+        st.markdown("### ✨ Resume Tips")
+        for tip in resume_tips:
+            st.markdown(f"- {tip}")
+
     except Exception as e:
-        return f"An error occurred: {e}"
+        st.error(f"❌ Prediction failed: {e}")
 
-@app.route('/visualize')
-def visualize():
-    predicted_salary = 65000  # mock prediction value
-    average_salary = 52000  # mock average
-
-    return render_template("visualize.html",
-                           predicted_salary=predicted_salary,
-                           average_salary=average_salary)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+st.markdown("---")
+st.markdown("Made with ❤️ by Bhavini Joshi")
