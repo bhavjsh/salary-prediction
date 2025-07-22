@@ -1,7 +1,7 @@
-Overview
 This Streamlit web application predicts whether an individual's annual income is > $50,000 or ≤ $50,000, based on professional and demographic factors. It uses a pre-trained machine learning model for real-time predictions via an intuitive UI.
 
 Features
+
 Interactive UI: Clean, responsive interface built with Streamlit.
 
 Real-time Predictions: Instant salary predictions.
@@ -48,9 +48,6 @@ Easily deployable on Streamlit Cloud by connecting your GitHub repository.
 🤝 Contributing
 Contributions are welcome! Open an issue or submit a pull request for improvements.
 
-
-📧 Contact
-Bhavini Joshi
 
 GitHub Profile https://github.com/bhavjsh
 
