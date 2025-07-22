@@ -35,7 +35,9 @@ Files: Ensure salary_model.pkl is in model/ and job_vs_salary_chart.png is in th
 
 Run: streamlit run app.py
 
-requirements.txt content:
+requirements.txt
+
+content:
 streamlit
 pandas
 scikit-learn
