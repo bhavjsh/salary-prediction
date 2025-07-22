@@ -8,7 +8,7 @@ import os
 # --- Configuration ---
 # Set page config
 st.set_page_config(
-    page_title="💼 Salary Prediction App", # Keep page icon for browser tab
+    page_title=" Salary Prediction App", # Keep page icon for browser tab
     page_icon="📊",
     layout="centered", # 'centered' or 'wide'
     initial_sidebar_state="collapsed"
@@ -36,10 +36,10 @@ st.markdown("""
 
     body {
         background-color: #fcfcfc; /* Very subtle off-white background */
-        /* New subtle background pattern for texture */
-        background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='3' cy='3' r='0.5' fill='%23e0e7ef' fill-opacity='0.2'/%3E%3C/svg%3E");
+        /* NEW BACKGROUND IMAGE: Subtle geometric pattern */
+        background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e0e7ef' fill-opacity='0.2'%3E%3Cpath d='M9 0h1v1H9V0zm1 9v1H9v-1h1zm-1 1H0v-1h9v1zm-9 0H0V9h1v1zm1-9H0V0h1v1zm0 0h8v1H2V0zM1 1v8H0V1h1zm8 8V1h1v8H9zM1 0h8v1H1V0z'/%3E%3C/g%3E%3C/svg%3E");
         background-repeat: repeat;
-        background-size: 6px 6px; /* Adjusted size for the new pattern */
+        background-size: 10px 10px; /* Adjusted size for the new pattern */
         background-attachment: fixed; /* Keeps pattern fixed when scrolling */
     }
 
@@ -58,7 +58,7 @@ st.markdown("""
         font-size: 4.5rem; /* Larger title */
         font-weight: 800; /* Extra bold */
         color: #1a202c; /* Near black */
-        background: -webkit-linear-gradient(45deg, #6b46c1, #4c51bf, #3182ce); /* Vibrant gradient */
+        background: -webkit-linear-gradient(45deg, #3b82f6, #06b6d4); /* NEW: Blue to Cyan Gradient */
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 1.2rem; /* More space below title */
@@ -76,30 +76,29 @@ st.markdown("""
 
     /* Card-like containers (main Streamlit block) */
     .st-emotion-cache-z5fcl4 { /* Target Streamlit's main block container */
-        background-color: #ffffff;
+        background-color: #f5f7fa; /* Changed to light grey */
         border-radius: 1.75rem; /* Slightly less rounded, more refined */
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1), 0 15px 30px -8px rgba(0, 0, 0, 0.05); /* Softer, more subtle shadow */
         padding: 4rem; /* Consistent padding */
         margin-bottom: 3.5rem;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
-        border: 1px solid #e2e8f0; /* Subtle light border */
+        border: 1px solid #e0e7ef; /* Changed to medium grey border */
     }
     .st-emotion-cache-z5fcl4:hover {
         transform: translateY(-5px); /* Gentle lift on hover */
         box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.12), 0 18px 36px -9px rgba(0, 0, 0, 0.06);
     }
 
-    /* Prediction Button styling (New Color) */
+    /* Primary Button styling (New Color) */
     .stButton > button {
-        background-color: #0d9488; /* Teal 600 - New primary button color */
-        background-image: none; /* Ensure no gradient */
+        background-image: linear-gradient(to right, #3b82f6, #06b6d4); /* Blue to Cyan Gradient */
         color: white;
         font-weight: 600; /* Semi-bold */
         padding: 1rem 2.2rem; /* Adjusted padding */
         border-radius: 0.75rem; /* Refined rounded corners */
         border: none;
         transition: all 0.2s ease-in-out;
-        box-shadow: 0 6px 12px rgba(13, 148, 136, 0.3); /* Softer shadow matching new color */
+        box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3); /* Shadow matching blue */
         cursor: pointer;
         width: auto;
         display: inline-flex;
@@ -109,13 +108,13 @@ st.markdown("""
         font-size: 1.1rem; /* Slightly smaller font for balance */
     }
     .stButton > button:hover {
-        background-color: #0f766e; /* Darker teal on hover */
+        background-image: linear-gradient(to right, #2563eb, #0891b2); /* Darker blue/cyan on hover */
         transform: translateY(-2px); /* Subtle lift */
-        box-shadow: 0 8px 16px rgba(13, 148, 136, 0.4);
+        box-shadow: 0 8px 16px rgba(59, 130, 246, 0.4); /* Darker shadow matching blue */
     }
     .stButton > button:active {
         transform: translateY(0);
-        box-shadow: 0 4px 8px rgba(13, 148, 136, 0.2);
+        box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2); /* Lighter shadow matching blue */
     }
 
     /* Secondary button style (for "Back to Home") */
@@ -143,13 +142,13 @@ st.markdown("""
         color: #334155;
     }
     .st-emotion-cache-1cyp85f:focus-within, .st-emotion-cache-13ejs7j:focus-within, .st-emotion-cache-1v0mbdj:focus-within {
-        border-color: #0d9488; /* Teal on focus */
-        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15); /* Softer focus ring */
+        border-color: #3b82f6; /* Blue on focus */
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); /* Softer focus ring matching blue */
     }
 
     /* Selectbox dropdown arrow */
     .st-emotion-cache-1v0mbdj .st-emotion-cache-1v1w777 { /* Target the dropdown arrow */
-        color: #0d9488; /* Color the arrow to match button */
+        color: #3b82f6; /* Color the arrow to match button */
     }
 
     /* Section titles */
@@ -171,7 +170,7 @@ st.markdown("""
         bottom: 0;
         width: 70px; /* Shorter underline */
         height: 4px; /* Thinner underline */
-        background-image: linear-gradient(to right, #0d9488, #2dd4bf); /* Teal gradient underline */
+        background-image: linear-gradient(to right, #3b82f6, #06b6d4); /* Blue to Cyan Gradient Underline */
         border-radius: 2px;
     }
 
@@ -189,13 +188,13 @@ st.markdown("""
 
     /* Content Box for sections (New Color & Animation) */
     .content-section-box {
-        background-color: #ffffff; /* Pure white background */
+        background-color: #f5f7fa; /* Changed to light grey */
         border-radius: 1.25rem; /* Refined rounded corners */
         padding: 2.5rem; /* Generous padding */
         margin-top: 1.5rem; /* Space below the section title */
         margin-bottom: 3rem; /* Space before the next section title */
         box-shadow: 0 6px 18px rgba(0,0,0,0.03); /* Softer, blurrier shadow */
-        border: 1px solid #e2e8f0; /* Subtle light border */
+        border: 1px solid #e0e7ef; /* Changed to medium grey border */
         animation: slideInUp 0.6s ease-out forwards; /* Apply animation */
         opacity: 0; /* Start invisible for animation */
     }
@@ -221,15 +220,15 @@ st.markdown("""
 
     /* Tip box styling (New Color) */
     .tip-box {
-        background-color: #fff7ed; /* Very light orange background */
-        border: 1px solid #fed7aa; /* Soft orange border */
-        border-left: 6px solid #fdba74; /* More prominent left border */
+        background-color: #e0f2fe; /* Changed to light blue */
+        border: 1px solid #93c5fd; /* Changed to medium blue border */
+        border-left: 6px solid #60a5fa; /* More prominent blue left border */
         padding: 2rem; /* More padding */
         border-radius: 1rem; /* Refined rounded corners */
         margin-top: 2.5rem;
         font-size: 1.05rem; /* Slightly larger font */
         line-height: 1.6;
-        color: #9a3412; /* Darker text for contrast */
+        color: #1e40af; /* Changed to darker blue text for contrast */
         box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Softer shadow */
         animation: slideInUp 0.7s ease-out forwards; /* Apply animation */
         opacity: 0; /* Start invisible for animation */
@@ -254,13 +253,13 @@ st.markdown("""
         font-size: 0.95rem;
     }
     .custom-footer a {
-        color: #0d9488; /* Teal */
+        color: #3b82f6; /* Blue for links */
         text-decoration: none;
         font-weight: 600;
         transition: color 0.2s ease-in-out;
     }
     .custom-footer a:hover {
-        color: #0f766e; /* Darker teal */
+        color: #2563eb; /* Darker blue on hover */
     }
 
     /* Prediction result styling (New Color) */
@@ -309,24 +308,25 @@ st.markdown("""
 
     /* Expander styling */
     .st-emotion-cache-1ft0x26 { /* Target Streamlit's expander header */
-        background-color: #f7fafc; /* Very light gray background */
+        background-color: #e0e7ef; /* Changed to medium grey */
         border-radius: 0.8rem; /* Refined rounded corners */
         padding: 0.9rem 1.2rem; /* Adjusted padding */
         font-weight: 600;
         color: #334155;
-        border: 1px solid #e2e8f0;
+        border: 1px solid #cbd5e0; /* Changed to slightly darker grey border */
         transition: all 0.2s ease-in-out;
     }
     .st-emotion-cache-1ft0x26:hover {
-        background-color: #edf2f7;
-        border-color: #cbd5e0;
+        background-color: #d1d9e0; /* Darker grey on hover */
+        border-color: #b0b9c2; /* Even darker border */
     }
 
     /* Dataframe styling */
     .stDataFrame {
         border-radius: 0.8rem; /* Refined rounded corners */
         overflow: hidden;
-        border: 1px solid #e2e8f0; /* Add border to dataframe */
+        background-color: #f5f7fa; /* Changed to light grey */
+        border: 1px solid #93c5fd; /* Changed to medium blue border */
     }
 
     /* General text styling */
@@ -383,6 +383,11 @@ if st.session_state.page == "home":
         """,
         unsafe_allow_html=True
     )
+    # Moved "Start Prediction" button here
+    st.markdown("<div style='text-align:center; margin-bottom: 3.5rem;'>", unsafe_allow_html=True)
+    st.button("🚀 Start Prediction", on_click=go_to_prediction)
+    st.markdown("</div>", unsafe_allow_html=True)
+
 
     st.markdown("""
     <div style='text-align:center; font-size:1.15rem; margin-top:10px; color: #475569; line-height: 1.7;'>
@@ -430,7 +435,7 @@ if st.session_state.page == "home":
     st.markdown("""
     <div class="content-section-box">
         <ul style="list-style-type: disc; padding-left: 2.5rem; font-size: 1.1rem; color: #475569;">
-            <li style="margin-bottom: 0.8rem;"><strong>Dataset:</strong> Based on the <a href="https://archive.ics.uci.edu/ml/datasets/adult" target="_blank" style="color: #0d9488; text-decoration: none;">Adult Census Income dataset</a> (UCI Machine Learning Repository).</li>
+            <li style="margin-bottom: 0.8rem;"><strong>Dataset:</strong> Based on the <a href="https://archive.ics.uci.edu/ml/datasets/adult" target="_blank" style="color: #3b82f6; text-decoration: none;">Adult Census Income dataset</a> (UCI Machine Learning Repository).</li>
             <li style="margin-bottom: 0.8rem;"><strong>Task:</strong> Binary classification (predicting whether income is `>50K` or `≤50K`).</li>
             <li style="margin-bottom: 0.8rem;"><strong>Features:</strong> Utilizes various features such as Age, Education Level, Occupation, Marital Status, and more.</li>
             <li><strong>Algorithms:</strong> The model is trained using a classification algorithm (e.g., Logistic Regression or Random Forest, depending on what's in your `salary_model.pkl`).</li>
@@ -464,7 +469,7 @@ if st.session_state.page == "home":
     """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
-    st.button("🚀 Start Prediction", on_click=go_to_prediction)
+
 
 # --- PREDICTION PAGE ---
 elif st.session_state.page == "predict":
