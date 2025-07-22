@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Tech Stack",
+        "description": "Utilizes Scikit-learn, Pandas, NumPy for ML; Streamlit for UI; joblib for model serialization.",
+        "icon": "https://cdn-icons-png.flaticon.com/512/888/888879.png"
+    },
+    {
+        "title": "How It Works",
+        "description": "User inputs job title, education, and experience. Model predicts expected salary using trained regression model.",
+        "icon": "https://cdn-icons-png.flaticon.com/512/753/753345.png"
+    },
+    {
+        "title": "Features",
+        "description": "Real-time salary prediction, resume tips, visual job insights, and clean single-page design.",
+        "icon": "https://cdn-icons-png.flaticon.com/512/1039/1039719.png"
+    },
+    {
+        "title": "Model Training",
+        "description": "Trained on a cleaned employer salary dataset using Linear Regression and Scikit-learn pipeline.",
+        "icon": "https://cdn-icons-png.flaticon.com/512/4436/4436481.png"
+    },
+    {
+        "title": "Resume Tips",
+        "description": "Personalized career and resume tips provided based on job title and experience.",
+        "icon": "https://cdn-icons-png.flaticon.com/512/942/942748.png"
+    }
+]
