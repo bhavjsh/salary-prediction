@@ -1,56 +1,137 @@
-This Streamlit web application predicts whether an individual's annual income is > $50,000 or ≤ $50,000, based on professional and demographic factors. It uses a pre-trained machine learning model for real-time predictions via an intuitive UI.
+Salary Prediction Web Application
+
+This repository contains a Streamlit-based web application that predicts whether an individual’s annual income is greater than $50,000 or less than or equal to $50,000, based on professional and demographic attributes.
+
+The application uses a pre-trained machine learning classification model to deliver real-time predictions through a clean and user-friendly interface.
 
 Features
 
-Interactive UI: Clean, responsive interface built with Streamlit.
+Interactive User Interface
+Clean and responsive UI built using Streamlit.
 
-Real-time Predictions: Instant salary predictions.
+Real-Time Predictions
+Instant salary classification based on user input.
 
-Comprehensive Inputs: Collects age, workclass, education, marital status, occupation, relationship, race, gender, hours per week, capital gain/loss, and native country.
+Comprehensive Input Parameters
+The model uses the following features:
 
-Model Info: Details on the ML model and dataset.
+Age
 
-Career Tips: Resume and general career advice.
+Workclass
 
-Visualizations: Occupation-wise salary distribution chart (job_vs_salary_chart.png).
+Education
 
-🛠️ Tech Stack
-ML: scikit-learn, pandas, joblib
+Marital Status
 
-Frontend: Streamlit
+Occupation
 
-Deployment: Streamlit Cloud
+Relationship
 
-📊 Model Information
-The model is a classification algorithm trained on the Adult Census Income dataset (UCI Machine Learning Repository) to predict >50K or ≤50K income.
+Race
 
-🚀 How to Run Locally
-Clone: git clone https://github.com/bhavjsh/salary-prediction.git && cd salary-prediction
+Gender
 
-Virtual Env (Recommended): python -m venv venv (then activate)
+Hours per Week
 
-Install Packages: Create requirements.txt (see below) and pip install -r requirements.txt
+Capital Gain
 
-Files: Ensure salary_model.pkl is in model/ and job_vs_salary_chart.png is in the root.
+Capital Loss
 
-Run: streamlit run app.py
+Native Country
 
-requirements.txt
+Model Information
+Provides details about the machine learning model and dataset.
 
-content:
+Career Guidance
+Includes resume tips and general career advice.
+
+Data Visualization
+Occupation-wise salary distribution chart (job_vs_salary_chart.png).
+
+Technology Stack
+Machine Learning
+
+scikit-learn
+
+pandas
+
+joblib
+
+Frontend
+
+Streamlit
+
+Deployment
+
+Streamlit Cloud
+
+Model Information
+
+The application uses a supervised classification algorithm trained on the Adult Census Income Dataset from the UCI Machine Learning Repository.
+
+Prediction Classes:
+
+Income > $50,000
+
+Income ≤ $50,000
+
+How to Run Locally
+1. Clone the Repository
+git clone https://github.com/bhavjsh/salary-prediction.git
+cd salary-prediction
+
+2. Create a Virtual Environment (Recommended)
+python -m venv venv
+
+
+Activate the environment:
+
+Windows
+
+venv\Scripts\activate
+
+
+macOS / Linux
+
+source venv/bin/activate
+
+3. Install Dependencies
+
+Create a requirements.txt file with the following content:
+
 streamlit
 pandas
 scikit-learn
 joblib
 Pillow
 
-☁️ Deployment
-Easily deployable on Streamlit Cloud by connecting your GitHub repository.
 
-🤝 Contributing
-Contributions are welcome! Open an issue or submit a pull request for improvements.
+Install the dependencies:
 
+pip install -r requirements.txt
 
-GitHub Profile https://github.com/bhavjsh
+4. Verify Required Files
 
-LinkedIn Profile https://www.linkedin.com/in/bhavjsh/
+Ensure the following files are present:
+
+model/salary_model.pkl
+job_vs_salary_chart.png
+app.py
+
+5. Run the Application
+streamlit run app.py
+
+Deployment
+
+The application can be easily deployed on Streamlit Cloud by connecting this GitHub repository and selecting app.py as the entry point.
+
+Contributing
+
+Contributions are welcome.
+Please open an issue to discuss changes or submit a pull request for improvements.
+
+Author
+
+GitHub: https://github.com/bhavjsh
+
+LinkedIn: https://www.linkedin.com/in/bhavjsh/
