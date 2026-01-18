@@ -5,14 +5,16 @@ This repository contains a Streamlit-based web application that predicts whether
 The application uses a pre-trained machine learning classification model to deliver real-time predictions through a clean and user-friendly interface.
 
 Features
-
 Interactive User Interface
+
 Clean and responsive UI built using Streamlit.
 
 Real-Time Predictions
+
 Instant salary classification based on user input.
 
 Comprehensive Input Parameters
+
 The model uses the following features:
 
 Age
@@ -40,12 +42,15 @@ Capital Loss
 Native Country
 
 Model Information
+
 Provides details about the machine learning model and dataset.
 
 Career Guidance
+
 Includes resume tips and general career advice.
 
 Data Visualization
+
 Occupation-wise salary distribution chart (job_vs_salary_chart.png).
 
 Technology Stack
@@ -97,7 +102,7 @@ source venv/bin/activate
 
 3. Install Dependencies
 
-Create a requirements.txt file with the following content:
+Create a requirements.txt file:
 
 streamlit
 pandas
@@ -106,13 +111,13 @@ joblib
 Pillow
 
 
-Install the dependencies:
+Install dependencies:
 
 pip install -r requirements.txt
 
 4. Verify Required Files
 
-Ensure the following files are present:
+Ensure the following files exist:
 
 model/salary_model.pkl
 job_vs_salary_chart.png
@@ -123,12 +128,15 @@ streamlit run app.py
 
 Deployment
 
-The application can be easily deployed on Streamlit Cloud by connecting this GitHub repository and selecting app.py as the entry point.
+This application can be deployed on Streamlit Cloud by connecting the GitHub repository and selecting app.py as the entry point.
 
 Contributing
 
 Contributions are welcome.
-Please open an issue to discuss changes or submit a pull request for improvements.
+
+Open an issue for feature requests or bug reports
+
+Submit a pull request for improvements
 
 Author
 
